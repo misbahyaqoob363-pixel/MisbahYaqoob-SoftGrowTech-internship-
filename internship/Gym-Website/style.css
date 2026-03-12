@@ -1,0 +1,236 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    scroll-behavior: smooth;
+    background: #f0f2f5;
+    color: #222;
+    overflow-x: hidden;
+}
+
+nav {
+    position: fixed;
+    width: 100%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    z-index: 1000;
+}
+
+nav .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 2rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: #f39c12;
+}
+
+.floating-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #f39c12;
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: 0.3s;
+    z-index: 1000;
+}
+.floating-btn:hover {
+    background: #e67e22;
+    transform: scale(1.1);
+}
+
+#hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    background-attachment: fixed;
+}
+
+#hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #f39c12, #e67e22);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#hero p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+#hero .btn {
+    padding: 15px 40px;
+    background: #f39c12;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+#hero .btn:hover {
+    background: #e67e22;
+    transform: scale(1.05);
+}
+
+
+section {
+    padding: 100px 50px;
+    text-align: center;
+    background-attachment: fixed;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    background: linear-gradient(to right, #f39c12, #e67e22);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+h2::after {
+    content: '';
+    width: 80px;
+    height: 4px;
+    background: #f39c12;
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+
+.about-cards, .services-cards, .plans-table {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.card, .plan {
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 20px;
+    width: 250px;
+    transition: transform 0.4s, box-shadow 0.4s;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    color: #222; /* changed text color to black */
+}
+
+.card:hover, .plan:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.25);
+}
+
+.card h3, .plan h3 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: #f39c12;
+}
+
+.plan p {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.card i {
+    color: #f39c12;
+    margin-bottom: 15px;
+}
+
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+form input, form textarea {
+    padding: 15px;
+    margin: 15px 0;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1rem;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+form button {
+    padding: 15px;
+    background: #f39c12;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form button:hover {
+    background: #e67e22;
+    transform: scale(1.05);
+}
+
+
+@media(max-width:768px){
+    nav ul {
+        flex-direction: column;
+        background: rgba(0,0,0,0.9);
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 200px;
+        height: calc(100%-70px);
+        transition: 0.3s;
+        padding-top: 20px;
+    }
+    nav ul.active { right: 0; }
+    nav ul li { margin: 20px 0; }
+    #hero h1 { font-size: 2rem; }
+    #hero p { font-size: 1rem; }
+    .card, .plan { width: 80%; }
+}

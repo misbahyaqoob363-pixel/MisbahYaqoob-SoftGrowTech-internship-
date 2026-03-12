@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Music Player</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- LEFT PLAYLIST -->
+<div class="playlist">
+
+<h2>Music</h2>
+<p class="subtitle">Playlists</p>
+
+<ul class="list" id="playlist">
+<li data-src="Music/track1.mp3" data-cover="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">Nasheed1</li>
+<li data-src="Music/track2.mp3" data-cover="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d">Nasheed2</li>
+<li data-src="Music/track3.mp3" data-cover="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">Nasheed3</li>
+</ul>
+
+</div>
+
+<!-- RIGHT PLAYER -->
+<div class="player">
+
+<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" class="cover" id="cover">
+
+<h2 id="songTitle">None</h2>
+<p class="artist">Studio Ensemble</p>
+
+<div class="progress-container">
+<span id="currentTime">0:00</span>
+<input type="range" id="progress" value="0">
+<span id="duration">0:00</span>
+</div>
+
+<div class="controls">
+<button id="prev">⏮</button>
+<button id="play">▶</button>
+<button id="next">⏭</button>
+</div>
+
+<div class="volume">
+🔉
+<input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+🔊
+</div>
+
+<audio id="audio"></audio>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

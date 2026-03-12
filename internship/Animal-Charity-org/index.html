@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Paws of Hope - Animal Charity</title>
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      color: #22d3ee;
+      background: #f0f9ff;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header / Hero */
+    .hero {
+      min-height: 90vh;
+      background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(30, 58, 95, 0.85)),
+                  url('https://images.unsplash.com/photo-1517841902196-5ebfa0a158b5?w=1920') center/cover no-repeat;
+      color: white;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .navbar {
+      padding: 1.4rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: absolute;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.3rem;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: #22d3ee;
+    }
+
+    .hero-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 720px;
+      padding: 0 20px 5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 7vw, 5.2rem);
+      margin-bottom: 1.2rem;
+      line-height: 1.1;
+    }
+
+    .hero h1 span {
+      color: #22d3ee;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2.2rem;
+      max-width: 520px;
+      opacity: 0.95;
+    }
+
+   
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2.1rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.28s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: #0ea5e9;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #0284c7;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(14, 165, 233, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      margin-left: 1rem;
+    }
+
+    .btn-outline:hover {
+      background: rgba(34, 211, 238, 0.15);
+      border-color: #22d3ee;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    
+    .section {
+      padding: 6rem 0;
+    }
+
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #0c4a6e;
+    }
+
+    
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .lead {
+      font-size: 1.28rem;
+      font-weight: 500;
+      margin-bottom: 1.4rem;
+      color: #0c4a6e;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(14, 165, 233, 0.15);
+    }
+
+    .stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 2.4rem;
+      color: #0ea5e9;
+    }
+
+    .stat span {
+      font-size: 1rem;
+      color: #64748b;
+    }
+
+    /* Programs */
+    .programs {
+      background: white;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(14, 165, 233, 0.08);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      border: 1px solid #e0f2fe;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 35px rgba(14, 165, 233, 0.15);
+      border-color: #7dd3fc;
+    }
+
+    .card-icon {
+      font-size: 3.2rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .card h3 {
+      margin-bottom: 0.8rem;
+      color: #0c4a6e;
+    }
+
+   
+    .donate {
+      background: linear-gradient(135deg, #0c4a6e 0%, #0ea5e9 100%);
+      color: white;
+      text-align: center;
+    }
+
+    .donate h2 {
+      color: white;
+    }
+
+    .donate-text {
+      font-size: 1.3rem;
+      max-width: 620px;
+      margin: 0 auto 3rem;
+      opacity: 0.95;
+    }
+
+    .donation-cards {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .donation-card {
+      background: white;
+      color: #1e3a5f;
+      padding: 2.2rem;
+      border-radius: 12px;
+      width: 300px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      transition: transform 0.3s, opacity 0.6s ease;
+      opacity: 0;
+    }
+
+    .donation-card.visible {
+      opacity: 1;
+    }
+
+    .donation-card:hover {
+      transform: scale(1.04);
+    }
+
+    .popular {
+      transform: scale(1.08);
+    }
+
+    .popular-tag {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #22d3ee;
+      color: #0c4a6e;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .donation-card h3 {
+      font-size: 2.6rem;
+      color: #0ea5e9;
+      margin-bottom: 0.8rem;
+    }
+
+    .donation-card button {
+      margin-top: 1.2rem;
+      width: 100%;
+    }
+
+   
+    footer {
+      background: #0c4a6e;
+      color: #bae6fd;
+      text-align: center;
+      padding: 3rem 0;
+    }
+
+    footer a {
+      color: #22d3ee;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+      color: #67e8f9;
+    }
+
+    
+    @media (max-width: 900px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .stats {
+        justify-content: center;
+      }
+      .donation-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+      .popular {
+        transform: scale(1.04);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      .nav-links {
+        gap: 1.2rem;
+      }
+      .section {
+        padding: 4rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <nav class="navbar">
+      <div class="logo">Paws of Hope</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#donate">Donate</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero-content" id="home">
+      <h2>Every Animal <span>Deserves Love</span></h2>
+      <p>We rescue, heal, and find forever homes for animals in need.</p>
+      <div class="hero-buttons">
+        <a href="#donate" class="btn btn-primary">Donate Now</a>
+        <a href="#programs" class="btn btn-outline">Our Programs</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+   
+    <section class="section" id="about">
+      <div class="container">
+        <h2>Our Mission</h2>
+        <div class="about-grid">
+          <div>
+            <p class="lead">
+              Paws of Hope works to end suffering of stray, abandoned and injured animals through rescue, medical care, sterilization and responsible rehoming.
+            </p>
+            <p>We believe every life matters — no matter how small or forgotten.</p>
+
+            <div class="stats">
+              <div class="stat">
+                <strong>1,200+</strong>
+                <span>Animals Rescued</span>
+              </div>
+              <div class="stat">
+                <strong>820+</strong>
+                <span>Adopted</span>
+              </div>
+              <div class="stat">
+                <strong>94%</strong>
+                <span>Survival Rate</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=800" alt="Happy rescued dogs">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section programs" id="programs">
+      <div class="container">
+        <h2>What We Do</h2>
+        <div class="cards">
+          <div class="card">
+            <div class="card-icon">🩹</div>
+            <h3>Emergency Rescue</h3>
+            <p>24/7 response to injured and abused animals on the streets.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🏥</div>
+            <h3>Veterinary Care</h3>
+            <p>Full treatment, vaccinations, surgeries and sterilization.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🏡</div>
+            <h3>Rehoming</h3>
+            <p>Careful matching with loving families + post-adoption support.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">📢</div>
+            <h3>Awareness</h3>
+            <p>Community education and anti-cruelty campaigns.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   
+    <section class="section donate" id="donate">
+      <div class="container">
+        <h2>Help Save Lives Today</h2>
+        <p class="donate-text">Your support means food, medicine, shelter and hope for animals who have none.</p>
+
+        <div class="donation-cards">
+          <div class="donation-card">
+            <h3>₹ 500</h3>
+            <p>Monthly food for 2–3 puppies</p>
+            <button class="btn btn-primary">Donate ₹500</button>
+          </div>
+          <div class="donation-card popular">
+            <div class="popular-tag">Most Popular</div>
+            <h3>₹ 2,000</h3>
+            <p>Emergency treatment or surgery</p>
+            <button class="btn btn-primary">Donate ₹2,000</button>
+          </div>
+          <div class="donation-card">
+            <h3>₹ 5,000</h3>
+            <p>Sponsor sterilization + vaccination of 5 street dogs</p>
+            <button class="btn btn-primary">Donate ₹5,000</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Paws of Hope</p>
+      <p>Contact: <a href="mailto:help@pawsofhope.pk">help@pawsofhope.pk</a></p>
+    </div>
+  </footer>
+
+  <script>
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    
+    const cards = document.querySelectorAll('.card, .donation-card');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    cards.forEach(card => observer.observe(card));
+  </script>
+</body>
+</html>
